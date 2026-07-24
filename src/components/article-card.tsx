@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { formatDanishDate } from "@/lib/format";
 import type { ArticleListItem } from "@/lib/content.functions";
+import { categoryTagClass } from "@/lib/categories";
 
 interface Props {
   article: ArticleListItem;
@@ -10,6 +11,7 @@ interface Props {
 export function ArticleCard({ article, size = "default" }: Props) {
   const large = size === "large";
   const compact = size === "compact";
+  const tagClass = categoryTagClass(article.category.slug);
   return (
     <article className="group flex flex-col">
       <Link
@@ -24,11 +26,7 @@ export function ArticleCard({ article, size = "default" }: Props) {
             width={large ? 1200 : 800}
             height={large ? 675 : 450}
             loading="lazy"
-            className={
-              large
-                ? "aspect-[16/9] w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-                : "aspect-[16/9] w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-            }
+            className="aspect-[16/9] w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
           />
         ) : (
           <div className="aspect-[16/9] w-full bg-secondary" />
@@ -38,18 +36,19 @@ export function ArticleCard({ article, size = "default" }: Props) {
         <Link
           to="/$categorySlug"
           params={{ categorySlug: article.category.slug }}
-          className="text-xs font-medium uppercase tracking-wider text-primary"
+          className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider ${tagClass}`}
         >
           {article.category.name}
         </Link>
         <h3
           className={
             large
-              ? "mt-2 font-serif text-3xl leading-tight md:text-4xl"
+              ? "mt-3 font-display text-3xl font-semibold leading-tight tracking-tight md:text-4xl"
               : compact
-                ? "mt-2 font-serif text-lg leading-tight"
-                : "mt-2 font-serif text-2xl leading-tight"
+                ? "mt-3 font-display text-lg font-semibold leading-snug tracking-tight"
+                : "mt-3 font-display text-2xl font-semibold leading-snug tracking-tight"
           }
+          style={{ fontFamily: "var(--font-display)" }}
         >
           <Link
             to="/$categorySlug/$articleSlug"
@@ -63,11 +62,11 @@ export function ArticleCard({ article, size = "default" }: Props) {
           </Link>
         </h3>
         {!compact && (
-          <p className="mt-2 max-w-prose text-[15px] text-muted-foreground">
+          <p className="mt-2 max-w-prose text-[15px] leading-relaxed text-muted-foreground">
             {article.excerpt}
           </p>
         )}
-        <p className="mt-3 text-xs text-muted-foreground">
+        <p className="mt-3 text-sm text-muted-foreground">
           {formatDanishDate(article.published_at)}
         </p>
       </div>

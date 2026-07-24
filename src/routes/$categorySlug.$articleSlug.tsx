@@ -12,6 +12,7 @@ import { ArticleCard } from "@/components/article-card";
 import { formatDanishDate } from "@/lib/format";
 import { buildToc } from "@/lib/toc";
 import { SITE_NAME, SITE_URL, absUrl } from "@/lib/site";
+import { categoryTagClass } from "@/lib/categories";
 
 const articleQuery = (categorySlug: string, articleSlug: string) =>
   queryOptions({
@@ -169,7 +170,7 @@ function ArticlePage() {
             <Link
               to="/$categorySlug"
               params={{ categorySlug }}
-              className="text-xs font-medium uppercase tracking-wider text-primary"
+              className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider ${categoryTagClass(a.category.slug)}`}
             >
               {a.category.name}
             </Link>

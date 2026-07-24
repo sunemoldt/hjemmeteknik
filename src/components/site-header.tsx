@@ -4,18 +4,22 @@ import type { Category } from "@/lib/content.functions";
 
 export function SiteHeader({ categories }: { categories: Category[] }) {
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 md:px-6">
-        <Link to="/" className="font-serif text-xl tracking-tight text-foreground">
+    <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur">
+      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 px-4 md:px-6">
+        <Link
+          to="/"
+          className="text-lg font-semibold tracking-tight text-foreground"
+          style={{ fontFamily: "var(--font-display)" }}
+        >
           hjemmeteknik<span className="text-primary">.dk</span>
         </Link>
-        <nav className="hidden items-center gap-6 md:flex" aria-label="Hovednavigation">
+        <nav className="hidden items-center gap-7 md:flex" aria-label="Hovednavigation">
           {categories.map((c) => (
             <Link
               key={c.id}
               to="/$categorySlug"
               params={{ categorySlug: c.slug }}
-              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
               activeProps={{ className: "text-foreground" }}
             >
               {c.name}

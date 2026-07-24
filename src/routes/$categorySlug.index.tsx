@@ -8,6 +8,7 @@ import { ArticleCard } from "@/components/article-card";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Pagination } from "@/components/pagination";
 import { SITE_NAME, SITE_URL, absUrl } from "@/lib/site";
+import { categoryUnderlineClass } from "@/lib/categories";
 
 const PAGE_SIZE = 12;
 
@@ -95,7 +96,11 @@ function CategoryIndex() {
         ]}
       />
       <header className="mt-6 max-w-3xl">
-        <h1 className="font-serif text-4xl md:text-5xl">{category!.name}</h1>
+        <h1
+          className={`inline-block border-b-2 pb-2 font-serif text-4xl md:text-5xl ${categoryUnderlineClass(category!.slug)}`}
+        >
+          {category!.name}
+        </h1>
         <p className="mt-4 text-lg text-muted-foreground">{category!.description}</p>
       </header>
 
