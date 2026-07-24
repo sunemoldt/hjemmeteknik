@@ -37,8 +37,19 @@ export interface Article extends ArticleListItem {
 }
 
 function getServerClient() {
-  const url = process.env.SUPABASE_URL!;
-  const key = process.env.SUPABASE_PUBLISHABLE_KEY!;
+  const url =
+    process.env.SUPABASE_URL ||
+    (import.meta as unknown as { env: Record<string, string | undefined> }).env
+      .VITE_SUPABASE_URL;
+  const key =
+    process.env.SUPABASE_PUBLISHABLE_KEY ||
+    (import.meta as unknown as { env: Record<string, string | undefined> }).env
+      .VITE_SUPABASE_PUBLISHABLE_KEY;
+  if (!url || !key) {
+    throw new Error(
+      "Missing Supabase env vars (SUPABASE_URL / SUPABASE_PUBLISHABLE_KEY or VITE_ equivalents).",
+    );
+  }
   return createClient(url, key, {
     auth: { persistSession: false, autoRefreshToken: false, storage: undefined },
     global: {
