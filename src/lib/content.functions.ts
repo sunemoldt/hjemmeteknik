@@ -114,7 +114,14 @@ export const listArticlesByCategory = createServerFn({ method: "GET" })
         .eq("category_id", data.categoryId)
         .order("published_at", { ascending: false })
         .range(from, to);
-      if (error) throw new Error(error.message);
+      if (error) {
+        // PostgREST returns PGRST103 when the requested range exceeds the row count.
+        // Treat as an empty page rather than a server error.
+        if ((error as { code?: string }).code === "PGRST103") {
+          return { items: [], total: count ?? 0, page: data.page, pageSize };
+        }
+        throw new Error(error.message);
+      }
       return {
         items: (rows ?? []) as unknown as ArticleListItem[],
         total: count ?? 0,
