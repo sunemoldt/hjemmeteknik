@@ -1,0 +1,21 @@
+# hjemmeteknik.dk
+
+> Dansksproget videns- og guidesite om hjemmeteknik: smart home, netværk, WiFi, robotstøvsugere og alt det, der gør et hjem lidt smartere. Redaktionelt indhold, ingen shop.
+
+## Kategorier
+
+- [Smart Home](https://hjemmeteknik.dk/smart-home): Belysning, sensorer, robotstøvsugere og stemmeassistenter til det danske hjem.
+- [Netværk & WiFi](https://hjemmeteknik.dk/netvaerk-og-wifi): Stabilt internet i hele boligen — routere, mesh-systemer, kabelføring, fejlfinding.
+- [Guides](https://hjemmeteknik.dk/guides): Trin-for-trin guides til opsætning og fejlfinding.
+
+## Populære guides
+
+- [Sådan vælger du robotstøvsuger](https://hjemmeteknik.dk/smart-home/saadan-vaelger-du-robotstoevsuger)
+- [Mesh WiFi eller kraftig router](https://hjemmeteknik.dk/netvaerk-og-wifi/mesh-wifi-eller-router)
+- [Kom i gang med Matter](https://hjemmeteknik.dk/guides/kom-i-gang-med-matter)
+
+## Om
+
+- [Om hjemmeteknik.dk](https://hjemmeteknik.dk/om)
+- [Kontakt](https://hjemmeteknik.dk/kontakt)
+- [RSS-feed](https://hjemmeteknik.dk/feed.xml)
