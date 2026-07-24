@@ -93,7 +93,7 @@ export const Route = createFileRoute("/api/public/publish-article")({
           tags: data.tags,
           meta_title: data.meta_title ?? null,
           meta_description: data.meta_description ?? null,
-          faq: data.faq ? (data.faq as unknown) : null,
+          faq: data.faq ? data.faq : null,
           author: data.author,
           status: data.status,
           published_at: data.status === "published" ? (data.published_at ?? new Date().toISOString()) : null,
