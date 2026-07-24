@@ -52,16 +52,37 @@ export const Route = createFileRoute("/api/public/publish-article")({
         // 3. Load admin client (lazy to avoid leaking into client bundle)
         const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
-        // 4. Resolve category
-        const { data: category, error: categoryError } = await supabaseAdmin
+        // 4. Resolve category (try slug first, then id)
+        const { data: categoryBySlug, error: slugCategoryError } = await supabaseAdmin
           .from("categories")
           .select("id, slug, name")
-          .or(`slug.eq.${data.category},id.eq.${data.category}`)
+          .eq("slug", data.category)
           .maybeSingle();
 
-        if (categoryError) {
-          return Response.json({ error: "Failed to resolve category", details: categoryError.message }, { status: 500 });
+        if (slugCategoryError) {
+          return Response.json(
+            { error: "Failed to resolve category", details: slugCategoryError.message },
+            { status: 500 },
+          );
         }
+
+        let category = categoryBySlug;
+        if (!category) {
+          const { data: categoryById, error: idCategoryError } = await supabaseAdmin
+            .from("categories")
+            .select("id, slug, name")
+            .eq("id", data.category)
+            .maybeSingle();
+
+          if (idCategoryError) {
+            return Response.json(
+              { error: "Failed to resolve category", details: idCategoryError.message },
+              { status: 500 },
+            );
+          }
+          category = categoryById;
+        }
+
         if (!category) {
           return Response.json({ error: CATEGORY_NOT_FOUND }, { status: 400 });
         }
