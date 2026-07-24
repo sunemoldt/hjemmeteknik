@@ -18,6 +18,7 @@ import { Route as CategorySlugRouteImport } from './routes/$categorySlug'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CategorySlugIndexRouteImport } from './routes/$categorySlug.index'
 import { Route as CategorySlugArticleSlugRouteImport } from './routes/$categorySlug.$articleSlug'
+import { Route as ApiPublicPublishArticleRouteImport } from './routes/api/public/publish-article'
 import { Route as CategorySlugSidePageRouteImport } from './routes/$categorySlug.side.$page'
 
 const SoegRoute = SoegRouteImport.update({
@@ -65,6 +66,11 @@ const CategorySlugArticleSlugRoute = CategorySlugArticleSlugRouteImport.update({
   path: '/$articleSlug',
   getParentRoute: () => CategorySlugRoute,
 } as any)
+const ApiPublicPublishArticleRoute = ApiPublicPublishArticleRouteImport.update({
+  id: '/api/public/publish-article',
+  path: '/api/public/publish-article',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CategorySlugSidePageRoute = CategorySlugSidePageRouteImport.update({
   id: '/side/$page',
   path: '/side/$page',
@@ -82,6 +88,7 @@ export interface FileRoutesByFullPath {
   '/$categorySlug/$articleSlug': typeof CategorySlugArticleSlugRoute
   '/$categorySlug/': typeof CategorySlugIndexRoute
   '/$categorySlug/side/$page': typeof CategorySlugSidePageRoute
+  '/api/public/publish-article': typeof ApiPublicPublishArticleRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -93,6 +100,7 @@ export interface FileRoutesByTo {
   '/$categorySlug/$articleSlug': typeof CategorySlugArticleSlugRoute
   '/$categorySlug': typeof CategorySlugIndexRoute
   '/$categorySlug/side/$page': typeof CategorySlugSidePageRoute
+  '/api/public/publish-article': typeof ApiPublicPublishArticleRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -106,6 +114,7 @@ export interface FileRoutesById {
   '/$categorySlug/$articleSlug': typeof CategorySlugArticleSlugRoute
   '/$categorySlug/': typeof CategorySlugIndexRoute
   '/$categorySlug/side/$page': typeof CategorySlugSidePageRoute
+  '/api/public/publish-article': typeof ApiPublicPublishArticleRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -120,6 +129,7 @@ export interface FileRouteTypes {
     | '/$categorySlug/$articleSlug'
     | '/$categorySlug/'
     | '/$categorySlug/side/$page'
+    | '/api/public/publish-article'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -131,6 +141,7 @@ export interface FileRouteTypes {
     | '/$categorySlug/$articleSlug'
     | '/$categorySlug'
     | '/$categorySlug/side/$page'
+    | '/api/public/publish-article'
   id:
     | '__root__'
     | '/'
@@ -143,6 +154,7 @@ export interface FileRouteTypes {
     | '/$categorySlug/$articleSlug'
     | '/$categorySlug/'
     | '/$categorySlug/side/$page'
+    | '/api/public/publish-article'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -153,6 +165,7 @@ export interface RootRouteChildren {
   OmRoute: typeof OmRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SoegRoute: typeof SoegRoute
+  ApiPublicPublishArticleRoute: typeof ApiPublicPublishArticleRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -220,6 +233,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CategorySlugArticleSlugRouteImport
       parentRoute: typeof CategorySlugRoute
     }
+    '/api/public/publish-article': {
+      id: '/api/public/publish-article'
+      path: '/api/public/publish-article'
+      fullPath: '/api/public/publish-article'
+      preLoaderRoute: typeof ApiPublicPublishArticleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/$categorySlug/side/$page': {
       id: '/$categorySlug/side/$page'
       path: '/side/$page'
@@ -254,7 +274,18 @@ const rootRouteChildren: RootRouteChildren = {
   OmRoute: OmRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SoegRoute: SoegRoute,
+  ApiPublicPublishArticleRoute: ApiPublicPublishArticleRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
