@@ -14,6 +14,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as OmRouteImport } from './routes/om'
 import { Route as KontaktRouteImport } from './routes/kontakt'
 import { Route as FeedDotxmlRouteImport } from './routes/feed[.]xml'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as CategorySlugRouteImport } from './routes/$categorySlug'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CategorySlugIndexRouteImport } from './routes/$categorySlug.index'
@@ -44,6 +45,11 @@ const KontaktRoute = KontaktRouteImport.update({
 const FeedDotxmlRoute = FeedDotxmlRouteImport.update({
   id: '/feed.xml',
   path: '/feed.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CategorySlugRoute = CategorySlugRouteImport.update({
@@ -80,6 +86,7 @@ const CategorySlugSidePageRoute = CategorySlugSidePageRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$categorySlug': typeof CategorySlugRouteWithChildren
+  '/admin': typeof AdminRoute
   '/feed.xml': typeof FeedDotxmlRoute
   '/kontakt': typeof KontaktRoute
   '/om': typeof OmRoute
@@ -92,6 +99,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/feed.xml': typeof FeedDotxmlRoute
   '/kontakt': typeof KontaktRoute
   '/om': typeof OmRoute
@@ -106,6 +114,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/$categorySlug': typeof CategorySlugRouteWithChildren
+  '/admin': typeof AdminRoute
   '/feed.xml': typeof FeedDotxmlRoute
   '/kontakt': typeof KontaktRoute
   '/om': typeof OmRoute
@@ -121,6 +130,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/$categorySlug'
+    | '/admin'
     | '/feed.xml'
     | '/kontakt'
     | '/om'
@@ -133,6 +143,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/admin'
     | '/feed.xml'
     | '/kontakt'
     | '/om'
@@ -146,6 +157,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/$categorySlug'
+    | '/admin'
     | '/feed.xml'
     | '/kontakt'
     | '/om'
@@ -160,6 +172,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CategorySlugRoute: typeof CategorySlugRouteWithChildren
+  AdminRoute: typeof AdminRoute
   FeedDotxmlRoute: typeof FeedDotxmlRoute
   KontaktRoute: typeof KontaktRoute
   OmRoute: typeof OmRoute
@@ -203,6 +216,13 @@ declare module '@tanstack/react-router' {
       path: '/feed.xml'
       fullPath: '/feed.xml'
       preLoaderRoute: typeof FeedDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/$categorySlug': {
@@ -269,6 +289,7 @@ const CategorySlugRouteWithChildren = CategorySlugRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CategorySlugRoute: CategorySlugRouteWithChildren,
+  AdminRoute: AdminRoute,
   FeedDotxmlRoute: FeedDotxmlRoute,
   KontaktRoute: KontaktRoute,
   OmRoute: OmRoute,
@@ -279,13 +300,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

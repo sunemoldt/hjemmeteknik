@@ -93,10 +93,10 @@ export const adminSetStatus = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     await requireAdmin();
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const patch: Record<string, unknown> = { status: data.status };
-    if (data.status === "published") {
-      patch.published_at = new Date().toISOString();
-    }
+    const patch =
+      data.status === "published"
+        ? { status: "published", published_at: new Date().toISOString() }
+        : { status: "draft" };
     const { error } = await supabaseAdmin.from("articles").update(patch).eq("id", data.id);
     if (error) throw new Error(error.message);
     return { ok: true as const };
