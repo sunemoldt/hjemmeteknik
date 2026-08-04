@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { SITE_NAME, SITE_URL, OG_IMAGE, OG_IMAGE_ALT } from "@/lib/site";
 
 export const Route = createFileRoute("/om")({
   head: () => ({
@@ -17,6 +17,13 @@ export const Route = createFileRoute("/om")({
       },
       { property: "og:url", content: SITE_URL + "/om" },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: OG_IMAGE },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: OG_IMAGE_ALT },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: OG_IMAGE },
+      { name: "twitter:image:alt", content: OG_IMAGE_ALT },
     ],
     links: [{ rel: "canonical", href: SITE_URL + "/om" }],
   }),

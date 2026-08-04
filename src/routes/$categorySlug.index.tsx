@@ -7,7 +7,7 @@ import {
 import { ArticleCard } from "@/components/article-card";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Pagination } from "@/components/pagination";
-import { SITE_NAME, SITE_URL, absUrl } from "@/lib/site";
+import { SITE_NAME, SITE_URL, absUrl, OG_IMAGE, OG_IMAGE_ALT } from "@/lib/site";
 import { categoryUnderlineClass } from "@/lib/categories";
 
 const PAGE_SIZE = 12;
@@ -56,6 +56,13 @@ export const Route = createFileRoute("/$categorySlug/")({
         { property: "og:description", content: category.description },
         { property: "og:url", content: url },
         { property: "og:type", content: "website" },
+        { property: "og:image", content: OG_IMAGE },
+        { property: "og:image:width", content: "1200" },
+        { property: "og:image:height", content: "630" },
+        { property: "og:image:alt", content: OG_IMAGE_ALT },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:image", content: OG_IMAGE },
+        { name: "twitter:image:alt", content: OG_IMAGE_ALT },
       ],
       links: [{ rel: "canonical", href: url }],
       scripts: [
