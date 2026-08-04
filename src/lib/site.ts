@@ -8,3 +8,6 @@ export function absUrl(path: string): string {
   if (!path.startsWith("/")) path = "/" + path;
   return SITE_URL + path;
 }
+
+export const OG_IMAGE = SITE_URL + "/og-default.png";
+export const OG_IMAGE_ALT = "hjemmeteknik.dk — guides om smart home, netværk og hjemmeteknik";

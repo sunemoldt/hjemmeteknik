@@ -5,7 +5,7 @@ import { z } from "zod";
 import { Search } from "lucide-react";
 import { searchArticles } from "@/lib/content.functions";
 import { ArticleCard } from "@/components/article-card";
-import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { SITE_NAME, SITE_URL, OG_IMAGE, OG_IMAGE_ALT } from "@/lib/site";
 
 const searchSchema = z.object({ q: z.string().optional().catch("") });
 
@@ -22,6 +22,13 @@ export const Route = createFileRoute("/soeg")({
       { property: "og:description", content: "Søg i guides og artikler." },
       { property: "og:url", content: SITE_URL + "/soeg" },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: OG_IMAGE },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: OG_IMAGE_ALT },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: OG_IMAGE },
+      { name: "twitter:image:alt", content: OG_IMAGE_ALT },
       { name: "robots", content: "noindex" },
     ],
     links: [{ rel: "canonical", href: SITE_URL + "/soeg" }],

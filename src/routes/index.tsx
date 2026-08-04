@@ -3,7 +3,7 @@ import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
 import { listLatestArticles } from "@/lib/content.functions";
 import { categoriesQuery } from "./__root";
 import { ArticleCard } from "@/components/article-card";
-import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, absUrl } from "@/lib/site";
+import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, absUrl, OG_IMAGE, OG_IMAGE_ALT } from "@/lib/site";
 
 const latestQuery = queryOptions({
   queryKey: ["articles", "latest", 12],
@@ -24,6 +24,13 @@ export const Route = createFileRoute("/")({
       { property: "og:description", content: SITE_DESCRIPTION },
       { property: "og:url", content: SITE_URL + "/" },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: OG_IMAGE },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: OG_IMAGE_ALT },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: OG_IMAGE },
+      { name: "twitter:image:alt", content: OG_IMAGE_ALT },
     ],
     links: [{ rel: "canonical", href: SITE_URL + "/" }],
     scripts: [
