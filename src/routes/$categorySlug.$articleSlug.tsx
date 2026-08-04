@@ -11,7 +11,7 @@ import { FaqAccordion } from "@/components/faq-accordion";
 import { ArticleCard } from "@/components/article-card";
 import { formatDanishDate } from "@/lib/format";
 import { buildToc } from "@/lib/toc";
-import { SITE_NAME, SITE_URL, absUrl } from "@/lib/site";
+import { SITE_NAME, SITE_URL, absUrl, OG_IMAGE, OG_IMAGE_ALT } from "@/lib/site";
 import { categoryTagClass } from "@/lib/categories";
 
 const articleQuery = (categorySlug: string, articleSlug: string) =>
@@ -51,7 +51,7 @@ export const Route = createFileRoute("/$categorySlug/$articleSlug")({
     const title = a.meta_title || `${a.title} — ${SITE_NAME}`;
     const desc = a.meta_description || a.excerpt;
     const url = absUrl(`/${params.categorySlug}/${params.articleSlug}`);
-    const image = a.featured_image_url ?? undefined;
+    const image = a.featured_image_url || OG_IMAGE;
 
     const meta: Array<Record<string, string>> = [
       { title },
@@ -66,9 +66,15 @@ export const Route = createFileRoute("/$categorySlug/$articleSlug")({
       { property: "article:section", content: a.category.name },
       { property: "article:author", content: a.author },
     ];
-    if (image) {
-      meta.push({ property: "og:image", content: image });
-      meta.push({ name: "twitter:image", content: image });
+    meta.push({ property: "og:image", content: image });
+    meta.push({ property: "og:image:alt", content: a.featured_image_url ? a.title : OG_IMAGE_ALT });
+    meta.push({ name: "twitter:card", content: "summary_large_image" });
+    meta.push({ name: "twitter:title", content: a.title });
+    meta.push({ name: "twitter:description", content: desc });
+    meta.push({ name: "twitter:image", content: image });
+    if (!a.featured_image_url) {
+      meta.push({ property: "og:image:width", content: "1200" });
+      meta.push({ property: "og:image:height", content: "630" });
     }
     for (const tag of a.tags) {
       meta.push({ property: "article:tag", content: tag });
