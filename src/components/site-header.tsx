@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Search } from "lucide-react";
 import type { Category } from "@/lib/content.functions";
+import logoMark from "@/assets/logo-mark.png";
 
 export function SiteHeader({ categories }: { categories: Category[] }) {
   return (
@@ -8,10 +9,19 @@ export function SiteHeader({ categories }: { categories: Category[] }) {
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 px-4 md:px-6">
         <Link
           to="/"
-          className="text-lg font-semibold tracking-tight text-foreground"
+          className="flex items-center gap-2 text-lg font-semibold tracking-tight text-foreground"
           style={{ fontFamily: "var(--font-display)" }}
         >
-          hjemmeteknik<span className="text-primary">.dk</span>
+          <img
+            src={logoMark}
+            alt="hjemmeteknik.dk logo"
+            width={28}
+            height={28}
+            className="h-7 w-7"
+          />
+          <span>
+            hjemmeteknik<span className="text-primary">.dk</span>
+          </span>
         </Link>
         <nav className="hidden items-center gap-7 md:flex" aria-label="Hovednavigation">
           {categories.map((c) => (
