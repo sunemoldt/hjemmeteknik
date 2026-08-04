@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import type { Category } from "@/lib/content.functions";
+import logoMark from "@/assets/logo-mark.png";
 
 export function SiteFooter({ categories }: { categories: Category[] }) {
   const year = new Date().getFullYear();
@@ -8,8 +9,21 @@ export function SiteFooter({ categories }: { categories: Category[] }) {
       <div className="mx-auto max-w-6xl px-4 py-12 md:px-6">
         <div className="grid gap-8 md:grid-cols-3">
           <div>
-            <Link to="/" className="font-serif text-lg text-foreground">
-              hjemmeteknik<span className="text-primary">.dk</span>
+            <Link
+              to="/"
+              className="flex items-center gap-2 font-serif text-lg text-foreground"
+            >
+              <img
+                src={logoMark}
+                alt="hjemmeteknik.dk logo"
+                width={26}
+                height={26}
+                loading="lazy"
+                className="h-6 w-6"
+              />
+              <span>
+                hjemmeteknik<span className="text-primary">.dk</span>
+              </span>
             </Link>
             <p className="mt-3 max-w-xs text-sm text-muted-foreground">
               Redaktionelle guides om smart home, netværk og alt det tekniske i det
