@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#FBFAF6"/>
+  <rect x="0" y="0" width="1200" height="10" fill="#c2410c"/>
+  <rect x="0.5" y="0.5" width="1199" height="629" fill="none" stroke="#e7e4da"/>
+<g transform="translate(770,70)">
+  <g transform="translate(30,10)">
+    <rect x="30" y="80" width="120" height="150" rx="26" fill="#232838"/>
+    <path d="M 55 80 Q 55 30 90 30 Q 125 30 125 80 Z" fill="#232838"/>
+    <g fill="#FBFAF6">
+      <circle cx="66" cy="120" r="11"/><circle cx="114" cy="120" r="11"/>
+      <circle cx="56" cy="158" r="11"/><circle cx="90" cy="158" r="11"/><circle cx="124" cy="158" r="11"/>
+      <circle cx="70" cy="196" r="9"/><circle cx="110" cy="196" r="9"/>
+    </g>
+    <path d="M 90 230 C 90 300 30 300 30 370 C 30 430 90 440 110 470" stroke="#c2410c" stroke-width="12" fill="none" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(175,150)" font-family="Outfit, Figtree, system-ui, sans-serif">
+    <rect x="0" y="240" width="52" height="60" rx="8" fill="#fdeee2"/>
+    <rect x="72" y="160" width="52" height="140" rx="8" fill="#f0a878"/>
+    <rect x="144" y="80" width="52" height="220" rx="8" fill="#c2410c"/>
+    <text x="26" y="330" font-size="19" fill="#6b7080" text-anchor="middle">3,7</text>
+    <text x="98" y="330" font-size="19" fill="#6b7080" text-anchor="middle">11</text>
+    <text x="170" y="330" font-size="19" fill="#6b7080" text-anchor="middle">22</text>
+    <text x="98" y="360" font-size="17" fill="#6b7080" text-anchor="middle">kW (AC)</text>
+    <path d="M 225 40 L 200 100 L 221 100 L 196 160 L 250 88 L 227 88 L 252 40 Z" fill="#c2410c" opacity="0.9"/>
+  </g>
+</g><text x="72" y="178" font-family="Outfit, Figtree, system-ui, sans-serif" font-size="21" font-weight="bold" letter-spacing="4" fill="#c2410c">GUIDES · ELBIL</text><text x="70" y="240" font-family="Outfit, Figtree, system-ui, sans-serif" font-size="58" font-weight="bold" letter-spacing="-1" fill="#232838">Ladekabler: 3,7, 11</text><text x="70" y="312" font-family="Outfit, Figtree, system-ui, sans-serif" font-size="58" font-weight="bold" letter-spacing="-1" fill="#232838">eller 22 kW?</text><text x="72" y="392" font-family="Outfit, Figtree, system-ui, sans-serif" font-size="27" fill="#6b7080">Forstå effekttrinene, lynladernes rolle —</text><text x="72" y="432" font-family="Outfit, Figtree, system-ui, sans-serif" font-size="27" fill="#6b7080">og hvorfor dit kabel skal være overdimensioneret.</text>
+  <text x="72" y="566" font-family="Outfit, Figtree, system-ui, sans-serif" font-size="22" font-weight="bold" fill="#232838">hjemmeteknik<tspan fill="#c2410c">.dk</tspan></text>
+</svg>

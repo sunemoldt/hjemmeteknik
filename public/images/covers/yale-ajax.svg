@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#FBFAF6"/>
+  <rect x="0" y="0" width="1200" height="10" fill="#4638c9"/>
+  <rect x="0.5" y="0.5" width="1199" height="629" fill="none" stroke="#e7e4da"/>
+<g transform="translate(790,80)">
+  <rect x="40" y="20" width="200" height="430" rx="10" fill="#ffffff" stroke="#e7e4da" stroke-width="2"/>
+  <rect x="70" y="50" width="140" height="130" rx="6" fill="#eceafc"/>
+  <rect x="70" y="200" width="140" height="130" rx="6" fill="#eceafc"/>
+  <rect x="180" y="355" width="52" height="86" rx="12" fill="#232838"/>
+  <circle cx="206" cy="381" r="11" fill="#4638c9"/>
+  <rect x="199" y="404" width="14" height="26" rx="6" fill="#4a5065"/>
+  <g stroke="#4638c9" stroke-width="5" fill="none" stroke-linecap="round">
+    <path d="M 252 366 a 42 42 0 0 1 0 62"/>
+    <path d="M 274 348 a 68 68 0 0 1 0 98"/>
+    <path d="M 296 330 a 94 94 0 0 1 0 134"/>
+  </g>
+  <g transform="translate(300,120)">
+    <path d="M 50 0 L 100 20 L 100 68 Q 100 112 50 132 Q 0 112 0 68 L 0 20 Z" fill="#4638c9"/>
+    <path d="M 28 62 L 45 79 L 74 44" stroke="#FBFAF6" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</g><text x="72" y="178" font-family="Outfit, Figtree, system-ui, sans-serif" font-size="21" font-weight="bold" letter-spacing="4" fill="#4638c9">SMART HOME · SIKKERHED</text><text x="70" y="240" font-family="Outfit, Figtree, system-ui, sans-serif" font-size="58" font-weight="bold" letter-spacing="-1" fill="#232838">Yale Doorman L3S</text><text x="70" y="312" font-family="Outfit, Figtree, system-ui, sans-serif" font-size="58" font-weight="bold" letter-spacing="-1" fill="#232838">+ Ajax alarm</text><text x="72" y="392" font-family="Outfit, Figtree, system-ui, sans-serif" font-size="27" fill="#6b7080">Når dørlås og alarm taler sammen,</text><text x="72" y="432" font-family="Outfit, Figtree, system-ui, sans-serif" font-size="27" fill="#6b7080">forsvinder de menneskelige fejl.</text>
+  <text x="72" y="566" font-family="Outfit, Figtree, system-ui, sans-serif" font-size="22" font-weight="bold" fill="#232838">hjemmeteknik<tspan fill="#4638c9">.dk</tspan></text>
+</svg>
